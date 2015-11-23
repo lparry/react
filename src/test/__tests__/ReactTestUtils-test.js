@@ -235,6 +235,23 @@ describe('ReactTestUtils', function() {
     expect(result.props.children).toEqual('ociffer');
   });
 
+  it("doesn't throw errors when setState is called in componentWillMount with shallow render", function() {
+    var SimpleComponent = React.createClass({
+      contextTypes: {
+        name: React.PropTypes.string,
+      },
+      componentWillMount: function() {
+        this.setState({hello: 'ociffer'});
+      },
+      render: function() {
+        return <div>{this.state.hello}</div>;
+      },
+    });
+
+    var shallowRenderer = ReactTestUtils.createRenderer();
+    expect(() => shallowRenderer.render(<SimpleComponent />)).not.toThrow();
+  });
+
   it('can pass context when shallowly rendering', function() {
     var SimpleComponent = React.createClass({
       contextTypes: {
