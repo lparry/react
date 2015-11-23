@@ -232,7 +232,7 @@ describe('ReactTestUtils', function() {
 
     var shallowRenderer = ReactTestUtils.createRenderer();
     var result = shallowRenderer.render(<SimpleComponent />);
-    expect(result).not.toBeUndefined();
+    expect(result.props.children).toEqual('ociffer');
   });
 
   it('can pass context when shallowly rendering', function() {
